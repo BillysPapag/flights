@@ -9,11 +9,18 @@
 
 #Να υπολογίσετε και να εμφανίσετε τις απαντήσεις για κάθε ένα από τα παρακάτω ερωτήματα
 
+
+print("hello world")
+library(readr)
+DelayedFlights <- read_csv("C:/Users/strat/Desktop/delayedflights/DelayedFlights.csv")
+View(DelayedFlights)
+
 # Importation of useful packages and observation of our dataset's structure
-install.packages("tidyverse")
-install.packages("dplyr")
-library("dplyr")
-library("tidyverse")
+
+if (require('tidyverse')==FALSE){install.packages("tidyverse")}
+library('tidyverse')
+if (require('dply')==FALSE){install.packages("dplyr")}
+library('dplyr')
 str(DelayedFlights)
 dim(DelayedFlights)
 
