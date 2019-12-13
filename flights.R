@@ -66,21 +66,17 @@ b[1,]  # Company MQ has the most cancellations of type B
 
 #Ερώτηση 5: να βρείτε τους κωδικούς των πτήσεων με τον μεγαλύτερο αριθμό καθυστερήσεων
 
-library(data.table)
-D <- data.table(DelayedFlights)
-counts <- D[,.(Count = .N), by = FlightNum]
-counts <- as.data.frame(counts)
-flightnum <- counts %>%
-  arrange(-Count)
-head(flightnum, n = 10)  # The flight with FlightNum = 16 has 1586 delays which makes it the flight with the most delays
+DelayedFlights %>%
+  filter(ArrDelay >0 ) %>%
+  group_by(FlightNum) %>%
+  add_tally()%>%
+  arrange(desc(n))# The flight with FlightNum = 50 had the most delays
 
 #Ερώτηση 6: να βρείτε και να υπολογίσετε το όνομα του μεγαλύτερου σε απόσταση προορισμού με τις περισσότερες καθυστερήσεις
 
-max_dist1 <- DelayedFlights %>%
-  filter(Distance == max(Distance)) %>%
-  group_by(Dest) %>%
-  select(Dest, Distance) %>%
-  summarise(most_delays = length(Dest)) %>%
+DelayedFlights %>%
+  group_by(Destination) %>%
+  summarise(n = max(Distance)) %>%
   arrange(-most_delays) 
 head(max_dist1, n = 1) # The longest destination with the most delays is HNL with 266 delays.
 
