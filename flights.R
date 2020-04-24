@@ -19,7 +19,7 @@ View(DelayedFlights)
 
 if (require('tidyverse')==FALSE){install.packages("tidyverse")}
 library('tidyverse')
-if (require('dply')==FALSE){install.packages("dplyr")}
+if (require('dplyr')==FALSE){install.packages("dplyr")}
 library('dplyr')
 str(DelayedFlights)
 dim(DelayedFlights)
